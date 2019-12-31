@@ -119,8 +119,11 @@ function goto_myscript() {
     #chmod 600 ~/./configs/traefik.yml       && \
 
     # deploy apps
-    docker stack deploy stkproxy -c stk_traefik.yml && \
+    docker stack deploy stksocat -c stk_socat.yml && \
+    docker stack deploy stktraefik -c stk_traefik.yml && \
+    #
     docker stack deploy stkwebapp -c stk_web.yml && \
+    #
     docker stack deploy stkgui -c stk_portainer.yml && echo && \
 
     # deploy swarmpit / constraint the db

@@ -87,13 +87,9 @@ function goto_myscript() {
     message_is="stack-this"
     docker run --rm devmtl/figlet:1.0 ${message_is} && sleep 2 && echo && \
 
-    # If existing, remove stacks: "
-    ./rundown.sh && \
 
-    # If not existing, create networks"
-    # create an overlay networks on docker swarm
+    # If not existing, create an overlay networks on docker swarm
     arr=( "ntw_front" "ntw_proxy" )
-
     for i in "${arr[@]}"; do
       if [ ! "$(docker network ls --filter name=${i} -q)" ]; then
       docker network create --driver overlay --attachable --opt encrypted "${i}"
@@ -107,7 +103,7 @@ function goto_myscript() {
     docker network ls | grep "ntw_" && echo && sleep 2 && \
     clear;
 
-    message_is="Launch stacks" && docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
+    message_is="Deploy stacks" && docker run --rm devmtl/figlet:1.0 ${message_is} && echo && \
 
     # Set ACME file
     #mkdir -pv           ~/./configs                   && \
